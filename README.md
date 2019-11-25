@@ -257,3 +257,51 @@ Para compartir un volumen anonimo:
 ```bash
 docker run -v [absolut_path]:[mount_path] [image_name] [COMMAND]
 ```
+
+## Gestionar redes
+
+Para crear una red:
+
+```bash
+docker network create [net_name]
+```
+Para connectarse a una red:
+
+```bash
+docker network connect [net_name] [container_name]
+```
+
+Para listar las redes:
+
+```bash
+docker network ls
+```
+Para eliminar una red:
+
+```bash
+docker network rm [net_name]
+```
+
+Para desconectarse de una red:
+
+```bash
+docker network disconnect
+```
+
+Para inspeccionar una red:
+
+```bash
+docker network inspect [net_name]
+```
+
+Para vincular dos contenedores por nombre :
+
+```bash
+docker run -it --link [container_name] [image_name] [COMMAND]
+```
+
+Para  lanzar un contenedor y que el contenedor use una interface de red especifica:
+
+```bash
+docker run -it --name [container_name] --net=[net_name] [image_name] [COMMAND]
+```
