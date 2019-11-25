@@ -9,6 +9,7 @@ Para instalar **docker** en linux:
 ```bash
 docker --help
 ```
+
 ```bash
 docker [COMMAND] --help
 ```
@@ -24,6 +25,7 @@ docker info
 ```bash
 docker run hello-world
 ```
+
 **Nota:** este es el comando para arrancar contenedores en docker. Para arrancar un contenedor en **docker** es necesario tener creada una **imagen** como no hemos creado la imagen, el comando intenta descargar la imagen desde el repositorio de imagenes de docker:
 
  [hub.docker.com](https://hub.docker.com)
@@ -35,21 +37,25 @@ Para buscar imagenes en el repositorio de imagenes de docker:
 ```bash
 docker search [image_name]
 ```
+
 Para ver las imagenes disponibles en local:
 
 ```bash
 docker images
 ```
+
 Para descargar una imagen del repositorio de imagenes de docker:
 
 ```bash
 docker pull [image_name]
 ```
+
 Para descargar una version especifica de una imagen:
 
 ```bash
 docker pull [image_name:tag]
 ```
+
 Para eliminar una imagen:
 
 ```bash
@@ -73,11 +79,13 @@ Para listar los contenedores:
 ```bash
 docker ps -a
 ```
+
 Para listar los contenedores en ejecucion:
 
 ```bash
 docker ps
 ```
+
 Para listar contenedores aplicando filtros:
 
 ```bash
@@ -101,36 +109,43 @@ Para conectarnos a un contenedor:
 ```bash
 docker attach [container_id]
 ```
+
 Salir del contenedor sin detenerlo:
 
 ```bash
 CTRL + P + Q
 ```
+
 Para vincularnos a un contenedor:
 
 ```bash
 docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
 ```
+
 Para ver los logs de un contenedor:
 
 ```bash
 docker logs -f [container_name]
 ```
+
 Para detener de manera forzada un contenedor:
 
 ```bash
 docker kill [container_name]
 ```
+
 Para pausar un contenedor:
 
 ```bash
 docker pause [container_name]
 ```
+
 Para reanudar un contenedor:
 
 ```bash
 docker unpause [container_name]
 ```
+
 Para reiniciar un contenedor:
 
 ```bash
@@ -142,8 +157,61 @@ Para inspeccionar un contenedor:
 ```bash
 docker inspect [container_name]
 ```
+
 Para eliminar un contenedor:
 
 ```bash
 docker rm [container_name]
+```
+
+## Constuir imagenes docker
+
+Construir a partir de un contenedor:
+
+```bash
+docker commit [container_name] [image_name]
+```
+
+```bash
+docker diff [container_name]
+```
+
+Construir a partir de un fichero **Dockerfile:**
+
+``` Dockerfile
+FROM node:12
+  WORKDIR /usr/src/[app_name]
+  COPY package*.json ./
+  RUN npm install
+  COPY . .
+  EXPOSE 3000
+  CMD [ "npm", "start" ]
+```
+
+fichero **.dockerignore**
+
+```.dockerfile
+node_modules
+  *.log
+  docker-compose.yml
+  Dockerfile
+  data
+```
+
+Para construir la imagen:
+
+```bash
+docker build -t [image_name] .
+```
+
+Lanzar el contenedor:
+
+```bash
+docker run -it -p 3000:3000 [image_name]
+```
+
+Lanzar el contenedor como servicio:
+
+```bash
+docker run -it -p 3000:3000 -d [image_name]
 ```
