@@ -215,3 +215,45 @@ Lanzar el contenedor como servicio:
 ```bash
 docker run -it -p 3000:3000 -d [image_name]
 ```
+
+## Gestionar Volumenes
+
+Para crear un volumen:
+
+```bash
+docker volume create [volume_name]
+```
+
+Para listar los volumenes existentes:
+
+```bash
+docker volume ls
+```
+
+```bash
+docker volume inspect [volume_name]
+```
+
+Para eliminar un volumen:
+
+```bash
+docker volume rm [volume_name]
+```
+
+Para eliminar todos los volumenes no usados:
+
+```bash
+docker volume prune
+```
+
+Para compartir un volumen con un contenedor:
+
+```bash
+docker run -v [volume_name]:[mount_path] [image_name] [COMMAND]
+```
+
+Para compartir un volumen anonimo:
+
+```bash
+docker run -v [absolut_path]:[mount_path] [image_name] [COMMAND]
+```
