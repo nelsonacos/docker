@@ -305,3 +305,99 @@ Para  lanzar un contenedor y que el contenedor use una interface de red especifi
 ```bash
 docker run -it --name [container_name] --net=[net_name] [image_name] [COMMAND]
 ```
+
+## Docker machine
+
+[https://github.com/docker/machine/releases](https://github.com/docker/machine/releases)
+
+```bash
+docker-machine info
+```
+
+```bash
+docker-machine version
+```
+
+Para crear una maquina virtual docker:
+
+```bash
+docker-machine create -d virtualbox [virtual_machine_name]
+```
+
+Para listar las maquinas virtuales:
+
+```bash
+docker-machine ls
+```
+
+Para conectarse a la maquina virtual:
+
+```bash
+docker-machine ssh [virtual_machine_name]
+```
+
+Para ver los parametros que necesita la maquina virtual:
+
+```bash
+docker-machine config [virtual_machine_name]
+```
+
+Para conectarse a la maquina virtual pasandole los parametros:
+
+```bash
+docker $(docker-machine config [virtual_machine_name]) ps
+```
+
+Para listar las variables de entorno de una maquina virtual:
+
+```bash
+docker-machine env [virtual_machine_name]
+```
+
+Para setear las variables de entornos:
+
+```bash
+eval $(docker-machine env [virtual_machine_name])s
+```
+
+Para verificar las variables de entornos:
+
+```bash
+env | grep DOCKER
+```
+
+Para limpiar las variables de entornos:
+
+```bash
+eval $(docker-machine env -U
+```
+
+Para arrancar una maquina virtual:
+
+```bash
+docker-machine start [virtual_machine_name]
+```
+
+Para detener una maquina virtual:
+
+```bash
+docker-machine stop [virtual_machine_name]
+```
+
+Para reiniciar una maquina virtual:
+
+```bash
+docker-machine restart [virtual_machine_name]
+```
+
+Para obtener mas informacion sobre una maquina virtual:
+
+```bash
+docker-machine inspect [virtual_machine_name]
+```
+
+Para eliminar una maquina virtual:
+
+```bash
+docker-machine rm [virtual_machine_name]
+```
