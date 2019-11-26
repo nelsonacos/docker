@@ -401,3 +401,103 @@ Para eliminar una maquina virtual:
 ```bash
 docker-machine rm [virtual_machine_name]
 ```
+
+## Docker compose ( Micro servicios )
+
+[https://github.com/docker/compose/releases](https://github.com/docker/compose/releases)
+
+```bash
+docker-compose info
+```
+
+```bash
+docker-compose version
+```
+
+Para definir los servicios que componen una aplicacion:
+
+**docker-compose.yml**
+
+Cada servicio contiene las instrucciones para contruir y ejecutar un contenedor.
+
+Para crear una palicacion:
+
+```bash
+docker-compose build
+```
+
+Para iniciar una aplicacion:
+
+```bash
+docker-compose up
+```
+
+Para iniciar una aplicacion en segundo plano:
+
+```bash
+docker-compose up -d
+```
+
+Los nombres de los contenedores tendran el siguiente formato:
+
+`<name>_<service>_<number>`
+
+Para ver los logs de todos los servicios:
+
+```bash
+docker-compose logs
+```
+
+Para ver los logs de un servicio:
+
+```bash
+docker-compose logs [service]
+```
+
+Para iniciar un contenedor:
+
+```bash
+docker-compose start [service]
+```
+
+Para detener un contenedor:
+
+```bash
+docker-compose stop [service]
+```
+
+Para reiniciar un contenedor:
+
+```bash
+docker-compose restart [service]
+```
+
+Para  extraer imágenes de servicio:
+
+```bash
+docker-compose pull [service]
+```
+
+Para eliminar un contenedor:
+
+```bash
+docker-compose rm [service]
+```
+
+Para cambiar el fichero estandar de docker compose:
+
+```bash
+docker-compose -f [compose_file]
+```
+
+Para escalar una aplicacion:
+
+```bash
+docker-compose scale [service]=[instance_number]
+```
+
+Para recargar cambios:
+
+```bash
+docker-compose up -d --force-recreate --no-deps lb
+```
