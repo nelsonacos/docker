@@ -420,7 +420,7 @@ Para definir los servicios que componen una aplicacion:
 
 Cada servicio contiene las instrucciones para contruir y ejecutar un contenedor.
 
-Para crear una palicacion:
+Para crear una aplicacion:
 
 ```bash
 docker-compose build
@@ -500,4 +500,92 @@ Para recargar cambios:
 
 ```bash
 docker-compose up -d --force-recreate --no-deps lb
+```
+
+## MongoDB en docker
+
+Para descargar la imagen oficial de mongo:
+
+```bash
+docker pull mongo
+```
+
+Para lanzar el contenedor de mongo como un servicio:
+
+```bash
+docker run -d mongo
+```
+
+Para ver el nombre aleatorio del contenedor:
+
+```bash
+docker ps
+```
+
+Para crear un contenedor temporal y enlazarlo a el contenedor de mongo:
+
+```bash
+docker run -it --link=[container_name]:mongo mongo /bin/bash
+```
+
+Para ver las variables de entorno de mongo:
+
+```bash
+env
+```
+
+Produce una salida como esta:
+
+```bash
+[...]
+HOME=/root
+SHLVL=1
+MONGO_PORT_27017_TCP_ADDR=172.17.0.3
+MONGO_ENV_JSYAML_VERSION=3.10.0
+MONGO_MAJOR=4.0
+[...]
+```
+
+Para cerrar la consola:
+
+```bash
+exit
+```
+
+Para ver si tenemos instalado el cliente de mongo:
+
+```bash
+sudo dpkg --get-selections | grep mongo
+```
+
+Para instalar el cliente de mongo:
+
+```bash
+sudo apt install mongodb-clients
+```
+
+Para conectarnos a la linea de comandos de mongo:
+
+```bash
+mongo [ip]:[27017] or [port]
+```
+
+Algunos de los comandos disponibles en mongo:
+
+```bash
+show dbs
+> use local
+> show collections
+> db.startup_log.find({})
+> db.startup_log.find({}).pretty()
+> use midb
+> db.micoleccion.insert({elemento:"uno"})
+> show collections
+> db.micoleccion.find()
+```
+
+Para salir de la consola de mongo:
+
+```bash
+CTRL+C
 ```
